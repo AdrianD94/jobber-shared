@@ -1,0 +1,41 @@
+{
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "index.js",
+  "description": "Helpers library for Jobber app",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm && tsc --outDir build/src && node scripts/build-package.js",
+    "build:cjs": "NODE_ENV=production BABEL_ENV=cjs babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/cjs --source-maps",
+    "build:esm": "NODE_ENV=production BABEL_ENV=esm babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/esm --source-maps"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "keywords": [],
+  "name": "@adriand94/jobber-shared",
+  "author": "Adrian Drozman",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./icons": {
+      "import": "./esm/icons/index.js",
+      "require": "./cjs/icons/index.js"
+    }
+  },
+  "types": "./src/index.d.ts"
+}
