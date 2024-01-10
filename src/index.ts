@@ -91,3 +91,7 @@ export {
     isEmail,
     isDataURL
   } from './helpers';
+  export {
+    IRabbitMq,
+    createConnection
+  } from './queues/connection';
